@@ -1,6 +1,10 @@
 # Build stage
 FROM node:18-alpine AS builder
 
+# Accept build argument for API URL
+ARG VITE_API_BASE_URL=http://localhost:8080
+ENV VITE_API_BASE_URL=${VITE_API_BASE_URL}
+
 WORKDIR /app
 
 # Copy package files
@@ -14,7 +18,7 @@ RUN if [ -f yarn.lock ]; then yarn install --frozen-lockfile; \
 # Copy source code
 COPY . .
 
-# Build the app
+# Build the app with the environment variable
 RUN npm run build
 
 # Production stage
