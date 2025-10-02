@@ -3,11 +3,9 @@ import { format, parseISO } from 'date-fns'
 import { PlusIcon, PencilIcon, TrashIcon, FunnelIcon, ChevronLeftIcon, ChevronRightIcon, ChartBarIcon } from '@heroicons/react/24/outline'
 import { transactionsApi, categoriesApi, statsApi } from '../services/api'
 import TransactionModal from '../components/TransactionModal'
-import { 
-  ModelsTransaction, 
+import {
+  ModelsTransaction,
   ModelsCategory,
-  ModelsTransactionType,
-  ModelsCreateTransactionRequest,
   ModelsMonthlyStats,
   ModelsCategoryStats
 } from '../generated'

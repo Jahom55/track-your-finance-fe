@@ -23,9 +23,6 @@ import type {
   ModelsTransactionListResponse,
   ModelsCreateTransactionRequest,
   ModelsUpdateTransactionRequest,
-  ModelsStatsResponse,
-  ModelsMonthlyStats,
-  StatsCategoriesGet200Response,
   StatsYearlyGet200Response,
   ModelsProperty,
   ModelsCreatePropertyRequest,
@@ -43,8 +40,9 @@ import type {
 
 // Create configuration with token interceptor
 const createApiConfig = (): Configuration => {
+  const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080'
   return new Configuration({
-    basePath: '/api/v1',
+    basePath: `${baseUrl}/api/v1`,
     apiKey: (keyParamName: string) => {
       const token = localStorage.getItem('auth_token')
       console.log('API Config - Token retrieved for', keyParamName, ':', token ? `${token.substring(0, 10)}...` : 'null')
@@ -89,12 +87,12 @@ export const userApi = {
   },
   
   updateProfile: async (data: { nickname?: string }): Promise<ModelsUser> => {
-    const response = await getUserApi().profilePut({ profilePutRequest: data })
+    const response = await getUserApi().profilePut({ request: data })
     return response.data
   },
-  
+
   changePassword: async (data: { current_password: string; new_password: string }): Promise<void> => {
-    await getUserApi().profilePasswordPut({ profilePasswordPutRequest: data })
+    await getUserApi().profilePasswordPut({ request: data })
   }
 }
 
@@ -132,15 +130,15 @@ export const categoriesApi = {
 }
 
 export const transactionsApi = {
-  list: async (params?: { 
-    page?: number; 
-    limit?: number; 
-    categoryId?: string; 
-    fromDate?: string; 
-    toDate?: string 
+  list: async (params?: {
+    page?: number;
+    limit?: number;
+    categoryId?: string;
+    fromDate?: string;
+    toDate?: string
   }): Promise<{ transactions: ModelsTransaction[]; total: number }> => {
     const response = await getTransactionsApi().transactionsGet({
-      page: params?.page,
+      offset: params?.page ? (params.page - 1) * (params.limit || 20) : undefined,
       limit: params?.limit,
       categoryId: params?.categoryId,
       fromDate: params?.fromDate,

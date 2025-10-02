@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 import { ModelsUser, ModelsLoginRequest, ModelsRegisterRequest } from '../generated'
 import { authApi, userApi } from '../services/api'
 

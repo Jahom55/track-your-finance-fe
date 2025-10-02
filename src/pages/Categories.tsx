@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { PlusIcon, PencilIcon, TrashIcon, FolderIcon, TagIcon } from '@heroicons/react/24/outline'
 import { categoriesApi } from '../services/api'
-import { ModelsCategory, ModelsCategoryType } from '../generated'
+import { ModelsCategory } from '../generated'
 import CategoryModal from '../components/CategoryModal'
 
 export default function Categories() {

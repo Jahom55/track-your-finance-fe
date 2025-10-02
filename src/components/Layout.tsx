@@ -52,7 +52,7 @@ export default function Layout() {
             </div>
             <div className="flex items-center space-x-4">
               <span className="text-sm text-gray-700">
-                {user?.first_name} {user?.last_name}
+                {user?.nickname || user?.email}
               </span>
               <button
                 onClick={logout}

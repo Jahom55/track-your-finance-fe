@@ -20,10 +20,8 @@ export default function PropertyModal({
   const [formData, setFormData] = useState({
     name: '',
     address: '',
-    property_type: 'RESIDENTIAL',
     buy_price: '',
     current_value: '',
-    monthly_rent: '',
     purchase_date: format(new Date(), 'yyyy-MM-dd'),
     remaining_debt: '',
     description: ''
@@ -38,10 +36,8 @@ export default function PropertyModal({
         setFormData({
           name: property.name || '',
           address: property.address || '',
-          property_type: property.property_type || 'RESIDENTIAL',
-          buy_price: ((property as any).purchase_price || (property as any).buy_price)?.toString() || '',
+          buy_price: property.buy_price?.toString() || '',
           current_value: property.current_value?.toString() || '',
-          monthly_rent: property.monthly_rent?.toString() || '',
           purchase_date: property.purchase_date ? property.purchase_date.split('T')[0] : format(new Date(), 'yyyy-MM-dd'),
           remaining_debt: property.remaining_debt?.toString() || '',
           description: property.description || ''
@@ -50,10 +46,8 @@ export default function PropertyModal({
         setFormData({
           name: '',
           address: '',
-          property_type: 'RESIDENTIAL',
           buy_price: '',
           current_value: '',
-          monthly_rent: '',
           purchase_date: format(new Date(), 'yyyy-MM-dd'),
           remaining_debt: '',
           description: ''
@@ -81,25 +75,20 @@ export default function PropertyModal({
       if (!formData.current_value || parseFloat(formData.current_value) <= 0) {
         throw new Error('Current value must be greater than 0')
       }
-      if (!formData.monthly_rent || parseFloat(formData.monthly_rent) < 0) {
-        throw new Error('Monthly rent must be 0 or greater')
-      }
 
       const fullDateTime = new Date(formData.purchase_date + 'T12:00:00.000Z').toISOString()
       
       const propertyData: ModelsCreatePropertyRequest = {
         name: formData.name.trim(),
         address: formData.address.trim(),
-        property_type: formData.property_type,
         buy_price: parseFloat(formData.buy_price),
         current_value: parseFloat(formData.current_value),
-        monthly_rent: parseFloat(formData.monthly_rent),
         purchase_date: fullDateTime,
         remaining_debt: formData.remaining_debt ? parseFloat(formData.remaining_debt) : undefined,
         description: formData.description.trim() || undefined
       }
 
-      if (property) {
+      if (property && property.id) {
         await realEstateApi.properties.update(property.id, propertyData)
       } else {
         await realEstateApi.properties.create(propertyData)
@@ -189,25 +178,6 @@ export default function PropertyModal({
                 </div>
 
                 <div>
-                  <label htmlFor="property_type" className="block text-sm font-medium text-gray-700">
-                    Property Type *
-                  </label>
-                  <select
-                    id="property_type"
-                    required
-                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    value={formData.property_type}
-                    onChange={(e) => setFormData({ ...formData, property_type: e.target.value })}
-                  >
-                    <option value="RESIDENTIAL">Residential</option>
-                    <option value="COMMERCIAL">Commercial</option>
-                    <option value="INDUSTRIAL">Industrial</option>
-                    <option value="LAND">Land</option>
-                    <option value="OTHER">Other</option>
-                  </select>
-                </div>
-
-                <div>
                   <label htmlFor="buy_price" className="block text-sm font-medium text-gray-700">
                     Purchase Price * ($)
                   </label>
@@ -234,20 +204,6 @@ export default function PropertyModal({
                     placeholder="0.00"
                     value={formData.current_value}
                     onChange={(e) => handleNumberChange('current_value', e.target.value)}
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="monthly_rent" className="block text-sm font-medium text-gray-700">
-                    Monthly Rent ($)
-                  </label>
-                  <input
-                    type="text"
-                    id="monthly_rent"
-                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    placeholder="0.00"
-                    value={formData.monthly_rent}
-                    onChange={(e) => handleNumberChange('monthly_rent', e.target.value)}
                   />
                 </div>
 

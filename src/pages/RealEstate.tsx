@@ -108,7 +108,7 @@ export default function RealEstate() {
   }
 
   const calculateMonthlyRent = () => {
-    return properties.reduce((sum, property) => sum + (property.monthly_rent || 0), 0)
+    return properties.reduce((sum, property) => sum + ((property as any).monthly_rent || 0), 0)
   }
 
   const tabs = [
@@ -260,7 +260,7 @@ export default function RealEstate() {
                         </div>
                         <div className="text-right">
                           <p className="text-sm font-medium text-gray-900">${(property.current_value || 0).toLocaleString()}</p>
-                          <p className="text-sm text-gray-500">${(property.monthly_rent || 0)}/month</p>
+                          <p className="text-sm text-gray-500">${((property as any).monthly_rent || 0)}/month</p>
                         </div>
                       </div>
                     ))}
@@ -300,10 +300,8 @@ export default function RealEstate() {
                             <p className="text-sm text-gray-600 mt-1 italic">{property.description}</p>
                           )}
                           <div className="mt-2 grid grid-cols-2 gap-2 text-sm text-gray-500">
-                            <span>Type: {property.property_type}</span>
-                            <span>Purchase: ${((property as any).purchase_price || (property as any).buy_price || 0).toLocaleString()}</span>
+                            <span>Purchase: ${(property.buy_price || 0).toLocaleString()}</span>
                             <span>Current: ${(property.current_value || 0).toLocaleString()}</span>
-                            <span>Rent: ${(property.monthly_rent || 0)}/month</span>
                             {property.purchase_date && (
                               <span>Purchased: {format(new Date(property.purchase_date), 'MMM dd, yyyy')}</span>
                             )}
@@ -318,8 +316,8 @@ export default function RealEstate() {
                             className="text-indigo-600 hover:text-indigo-900 text-sm font-medium">
                             Edit
                           </button>
-                          <button 
-                            onClick={() => handleDeleteProperty(property.id)}
+                          <button
+                            onClick={() => property.id && handleDeleteProperty(property.id)}
                             className="text-red-600 hover:text-red-900 text-sm font-medium">
                             Delete
                           </button>
@@ -356,9 +354,7 @@ export default function RealEstate() {
             <div className="bg-white shadow rounded-lg">
               {transactions.length > 0 ? (
                 <div className="divide-y divide-gray-200">
-                  {transactions.map((transaction) => {
-                    const property = properties.find(p => p.id === transaction.property_id)
-                    return (
+                  {transactions.map((transaction) => (
                       <div key={transaction.id} className="p-6">
                         <div className="flex items-center justify-between">
                           <div className="flex-1">
@@ -386,16 +382,15 @@ export default function RealEstate() {
                               className="text-indigo-600 hover:text-indigo-900 text-sm font-medium">
                               Edit
                             </button>
-                            <button 
-                              onClick={() => handleDeleteTransaction(transaction.id)}
+                            <button
+                              onClick={() => transaction.id && handleDeleteTransaction(transaction.id)}
                               className="text-red-600 hover:text-red-900 text-sm font-medium">
                               Delete
                             </button>
                           </div>
                         </div>
                       </div>
-                    )
-                  })}
+                    ))}
                 </div>
               ) : (
                 <div className="p-6 text-center">
@@ -539,7 +534,7 @@ export default function RealEstate() {
                             Properties
                           </dt>
                           <dd className="text-lg font-medium text-gray-900">
-                            {monthlyStats.property_count || 0}
+                            {(monthlyStats as any).property_count || properties.length}
                           </dd>
                         </dl>
                       </div>

@@ -19,7 +19,14 @@ export default function RealEstateTransactionModal({
   transaction,
   properties
 }: RealEstateTransactionModalProps) {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    name: string;
+    property_id: string;
+    type: ModelsRealEstateTransactionType;
+    amount: string;
+    description: string;
+    transaction_date: string;
+  }>({
     name: '',
     property_id: '',
     type: ModelsRealEstateTransactionType.RealEstateExpense,
@@ -85,7 +92,7 @@ export default function RealEstateTransactionModal({
         transaction_date: fullDateTime
       }
 
-      if (transaction) {
+      if (transaction && transaction.id) {
         await realEstateApi.transactions.update(transaction.id, transactionData)
       } else {
         await realEstateApi.transactions.create(transactionData)
@@ -195,7 +202,7 @@ export default function RealEstateTransactionModal({
                         name="type"
                         value={ModelsRealEstateTransactionType.RealEstateIncome}
                         checked={formData.type === ModelsRealEstateTransactionType.RealEstateIncome}
-                        onChange={(e) => setFormData({ ...formData, type: e.target.value as ModelsRealEstateTransactionType })}
+                        onChange={() => setFormData({ ...formData, type: ModelsRealEstateTransactionType.RealEstateIncome })}
                         className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
                       />
                       <span className="ml-2 text-sm text-gray-700">Income (Rent, Sale, etc.)</span>
@@ -206,7 +213,7 @@ export default function RealEstateTransactionModal({
                         name="type"
                         value={ModelsRealEstateTransactionType.RealEstateExpense}
                         checked={formData.type === ModelsRealEstateTransactionType.RealEstateExpense}
-                        onChange={(e) => setFormData({ ...formData, type: e.target.value as ModelsRealEstateTransactionType })}
+                        onChange={() => setFormData({ ...formData, type: ModelsRealEstateTransactionType.RealEstateExpense })}
                         className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
                       />
                       <span className="ml-2 text-sm text-gray-700">Expense (Maintenance, Tax, etc.)</span>

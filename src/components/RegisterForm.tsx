@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { authApi } from '../services/api'
-import { useAuth } from '../hooks/useAuth'
 
 interface RegisterFormProps {
   onClose: () => void
@@ -9,7 +8,6 @@ interface RegisterFormProps {
 }
 
 export default function RegisterForm({ onClose, onSwitchToLogin }: RegisterFormProps) {
-  const { login } = useAuth()
   const [formData, setFormData] = useState({
     nickname: '',
     email: ''
@@ -25,7 +23,7 @@ export default function RegisterForm({ onClose, onSwitchToLogin }: RegisterFormP
     setIsLoading(true)
 
     try {
-      const response = await authApi.register(formData)
+      await authApi.register(formData)
       setSuccess('Registration successful! Please check your email for further instructions.')
       
       // Close modal after showing success message

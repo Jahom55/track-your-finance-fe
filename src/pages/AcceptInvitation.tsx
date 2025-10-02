@@ -2,12 +2,10 @@ import { useState, useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
 import { authApi } from '../services/api'
-import { useAuth } from '../hooks/useAuth'
 
 export default function AcceptInvitation() {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
-  const { login } = useAuth()
   
   const [formData, setFormData] = useState({
     password: '',
