@@ -43,6 +43,11 @@ export default function SpendingDiary() {
   useEffect(() => {
     loadData()
   }, [page, typeFilter, categoryFilter, dateFromFilter, dateToFilter])
+
+  // Reset page to 1 when filters change
+  useEffect(() => {
+    setPage(1)
+  }, [typeFilter, categoryFilter, dateFromFilter, dateToFilter])
   
   useEffect(() => {
     loadMonthlyStats()
@@ -51,13 +56,13 @@ export default function SpendingDiary() {
   const loadData = async () => {
     try {
       setLoading(true)
-      
+
       // Load transactions with filters
       const params: any = {
         limit,
         offset: (page - 1) * limit,
       }
-      
+
       if (typeFilter !== 'ALL') {
         params.type = typeFilter
       }
@@ -71,11 +76,14 @@ export default function SpendingDiary() {
         params.toDate = dateToFilter
       }
 
+      console.log('Loading transactions with params:', JSON.stringify(params, null, 2))
+      console.log('categoryFilter value:', categoryFilter, 'type:', typeof categoryFilter, 'isArray:', Array.isArray(categoryFilter))
       const [transactionsResponse, categoriesResponse] = await Promise.all([
         transactionsApi.list(params),
         categoriesApi.list()
       ])
-      
+
+      console.log('Transactions response:', JSON.stringify(transactionsResponse, null, 2))
       setTransactions(transactionsResponse.transactions || [])
       setTotalTransactions(transactionsResponse.total || 0)
       setCategories(categoriesResponse)

@@ -131,14 +131,16 @@ export const categoriesApi = {
 
 export const transactionsApi = {
   list: async (params?: {
-    page?: number;
+    type?: 'INCOME' | 'EXPENSE';
     limit?: number;
+    offset?: number;
     categoryId?: string;
     fromDate?: string;
     toDate?: string
   }): Promise<{ transactions: ModelsTransaction[]; total: number }> => {
     const response = await getTransactionsApi().transactionsGet({
-      offset: params?.page ? (params.page - 1) * (params.limit || 20) : undefined,
+      type: params?.type as any,
+      offset: params?.offset,
       limit: params?.limit,
       categoryId: params?.categoryId,
       fromDate: params?.fromDate,
