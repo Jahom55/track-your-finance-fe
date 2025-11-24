@@ -90,6 +90,19 @@ export interface HandlersErrorResponse {
 /**
  * 
  * @export
+ * @interface InspectionsGet200Response
+ */
+export interface InspectionsGet200Response {
+    /**
+     * 
+     * @type {Array<ModelsInspection>}
+     * @memberof InspectionsGet200Response
+     */
+    'inspections'?: Array<ModelsInspection>;
+}
+/**
+ * 
+ * @export
  * @interface ModelsAcceptInvitationRequest
  */
 export interface ModelsAcceptInvitationRequest {
@@ -331,6 +344,92 @@ export interface ModelsCreateCategoryRequest {
 /**
  * 
  * @export
+ * @interface ModelsCreateInspectionRequest
+ */
+export interface ModelsCreateInspectionRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsCreateInspectionRequest
+     */
+    'date': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsCreateInspectionRequest
+     */
+    'description'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ModelsCreateInspectionRequest
+     */
+    'physically_check'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsCreateInspectionRequest
+     */
+    'property_id': string;
+}
+/**
+ * 
+ * @export
+ * @interface ModelsCreateMortgageRequest
+ */
+export interface ModelsCreateMortgageRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsCreateMortgageRequest
+     */
+    'end_date': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ModelsCreateMortgageRequest
+     */
+    'interest_rate': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsCreateMortgageRequest
+     */
+    'lender_name': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ModelsCreateMortgageRequest
+     */
+    'monthly_payment': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsCreateMortgageRequest
+     */
+    'notes'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ModelsCreateMortgageRequest
+     */
+    'principal_amount': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsCreateMortgageRequest
+     */
+    'property_id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsCreateMortgageRequest
+     */
+    'start_date': string;
+}
+/**
+ * 
+ * @export
  * @interface ModelsCreatePropertyRequest
  */
 export interface ModelsCreatePropertyRequest {
@@ -345,12 +444,6 @@ export interface ModelsCreatePropertyRequest {
      * @type {number}
      * @memberof ModelsCreatePropertyRequest
      */
-    'buy_price': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ModelsCreatePropertyRequest
-     */
     'current_value': number;
     /**
      * 
@@ -360,16 +453,40 @@ export interface ModelsCreatePropertyRequest {
     'description'?: string;
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof ModelsCreatePropertyRequest
      */
-    'name': string;
+    'fee_amount'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ModelsCreatePropertyRequest
+     */
+    'monthly_rent'?: number;
     /**
      * 
      * @type {string}
      * @memberof ModelsCreatePropertyRequest
      */
-    'purchase_date': string;
+    'name': string;
+    /**
+     * e.g., \"RESIDENTIAL\", \"COMMERCIAL\"
+     * @type {string}
+     * @memberof ModelsCreatePropertyRequest
+     */
+    'property_type'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsCreatePropertyRequest
+     */
+    'purchase_date'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ModelsCreatePropertyRequest
+     */
+    'purchase_price': number;
     /**
      * 
      * @type {number}
@@ -425,6 +542,55 @@ export interface ModelsCreateRealEstateTransactionRequest {
 /**
  * 
  * @export
+ * @interface ModelsCreateTenantRequest
+ */
+export interface ModelsCreateTenantRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsCreateTenantRequest
+     */
+    'address'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsCreateTenantRequest
+     */
+    'agreement_from_date'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsCreateTenantRequest
+     */
+    'agreement_to_date'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsCreateTenantRequest
+     */
+    'contact'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ModelsCreateTenantRequest
+     */
+    'deposit_amount'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsCreateTenantRequest
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsCreateTenantRequest
+     */
+    'property_id': string;
+}
+/**
+ * 
+ * @export
  * @interface ModelsCreateTransactionRequest
  */
 export interface ModelsCreateTransactionRequest {
@@ -467,6 +633,67 @@ export interface ModelsCreateTransactionRequest {
 }
 
 
+/**
+ * 
+ * @export
+ * @interface ModelsInspection
+ */
+export interface ModelsInspection {
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsInspection
+     */
+    'created_at'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsInspection
+     */
+    'date': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsInspection
+     */
+    'description'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsInspection
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ModelsInspection
+     */
+    'physically_check'?: boolean;
+    /**
+     * 
+     * @type {ModelsProperty}
+     * @memberof ModelsInspection
+     */
+    'property'?: ModelsProperty;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsInspection
+     */
+    'property_id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsInspection
+     */
+    'updated_at'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsInspection
+     */
+    'user_id'?: string;
+}
 /**
  * 
  * @export
@@ -551,6 +778,91 @@ export interface ModelsMonthlyStats {
 /**
  * 
  * @export
+ * @interface ModelsMortgage
+ */
+export interface ModelsMortgage {
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsMortgage
+     */
+    'created_at'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsMortgage
+     */
+    'end_date': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsMortgage
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ModelsMortgage
+     */
+    'interest_rate': number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ModelsMortgage
+     */
+    'is_active'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsMortgage
+     */
+    'lender_name': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ModelsMortgage
+     */
+    'monthly_payment': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsMortgage
+     */
+    'notes'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ModelsMortgage
+     */
+    'principal_amount': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsMortgage
+     */
+    'property_id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsMortgage
+     */
+    'start_date': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsMortgage
+     */
+    'updated_at'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsMortgage
+     */
+    'user_id'?: string;
+}
+/**
+ * 
+ * @export
  * @interface ModelsProperty
  */
 export interface ModelsProperty {
@@ -560,12 +872,6 @@ export interface ModelsProperty {
      * @memberof ModelsProperty
      */
     'address': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof ModelsProperty
-     */
-    'buy_price': number;
     /**
      * 
      * @type {string}
@@ -586,6 +892,12 @@ export interface ModelsProperty {
     'description'?: string;
     /**
      * 
+     * @type {number}
+     * @memberof ModelsProperty
+     */
+    'fee_amount'?: number;
+    /**
+     * 
      * @type {string}
      * @memberof ModelsProperty
      */
@@ -598,6 +910,12 @@ export interface ModelsProperty {
     'is_active'?: boolean;
     /**
      * 
+     * @type {number}
+     * @memberof ModelsProperty
+     */
+    'monthly_rent'?: number;
+    /**
+     * 
      * @type {string}
      * @memberof ModelsProperty
      */
@@ -607,7 +925,19 @@ export interface ModelsProperty {
      * @type {string}
      * @memberof ModelsProperty
      */
+    'property_type'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsProperty
+     */
     'purchase_date': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ModelsProperty
+     */
+    'purchase_price': number;
     /**
      * 
      * @type {number}
@@ -653,12 +983,6 @@ export interface ModelsPropertyWithBalance {
     'balance'?: number;
     /**
      * 
-     * @type {number}
-     * @memberof ModelsPropertyWithBalance
-     */
-    'buy_price': number;
-    /**
-     * 
      * @type {string}
      * @memberof ModelsPropertyWithBalance
      */
@@ -677,6 +1001,12 @@ export interface ModelsPropertyWithBalance {
     'description'?: string;
     /**
      * 
+     * @type {number}
+     * @memberof ModelsPropertyWithBalance
+     */
+    'fee_amount'?: number;
+    /**
+     * 
      * @type {string}
      * @memberof ModelsPropertyWithBalance
      */
@@ -689,6 +1019,12 @@ export interface ModelsPropertyWithBalance {
     'is_active'?: boolean;
     /**
      * 
+     * @type {number}
+     * @memberof ModelsPropertyWithBalance
+     */
+    'monthly_rent'?: number;
+    /**
+     * 
      * @type {string}
      * @memberof ModelsPropertyWithBalance
      */
@@ -698,7 +1034,19 @@ export interface ModelsPropertyWithBalance {
      * @type {string}
      * @memberof ModelsPropertyWithBalance
      */
+    'property_type'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsPropertyWithBalance
+     */
     'purchase_date': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ModelsPropertyWithBalance
+     */
+    'purchase_price': number;
     /**
      * 
      * @type {number}
@@ -970,6 +1318,91 @@ export interface ModelsStatsResponse {
 /**
  * 
  * @export
+ * @interface ModelsTenant
+ */
+export interface ModelsTenant {
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsTenant
+     */
+    'address'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsTenant
+     */
+    'agreement_from_date'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsTenant
+     */
+    'agreement_to_date'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsTenant
+     */
+    'contact'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsTenant
+     */
+    'created_at'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ModelsTenant
+     */
+    'deposit_amount'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsTenant
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ModelsTenant
+     */
+    'is_active'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsTenant
+     */
+    'name': string;
+    /**
+     * 
+     * @type {ModelsProperty}
+     * @memberof ModelsTenant
+     */
+    'property'?: ModelsProperty;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsTenant
+     */
+    'property_id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsTenant
+     */
+    'updated_at'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsTenant
+     */
+    'user_id'?: string;
+}
+/**
+ * 
+ * @export
  * @interface ModelsTransaction
  */
 export interface ModelsTransaction {
@@ -1133,6 +1566,86 @@ export interface ModelsUpdateCategoryRequest {
 /**
  * 
  * @export
+ * @interface ModelsUpdateInspectionRequest
+ */
+export interface ModelsUpdateInspectionRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsUpdateInspectionRequest
+     */
+    'date'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsUpdateInspectionRequest
+     */
+    'description'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ModelsUpdateInspectionRequest
+     */
+    'physically_check'?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface ModelsUpdateMortgageRequest
+ */
+export interface ModelsUpdateMortgageRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsUpdateMortgageRequest
+     */
+    'end_date'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ModelsUpdateMortgageRequest
+     */
+    'interest_rate'?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ModelsUpdateMortgageRequest
+     */
+    'is_active'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsUpdateMortgageRequest
+     */
+    'lender_name'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ModelsUpdateMortgageRequest
+     */
+    'monthly_payment'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsUpdateMortgageRequest
+     */
+    'notes'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ModelsUpdateMortgageRequest
+     */
+    'principal_amount'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsUpdateMortgageRequest
+     */
+    'start_date'?: string;
+}
+/**
+ * 
+ * @export
  * @interface ModelsUpdatePropertyRequest
  */
 export interface ModelsUpdatePropertyRequest {
@@ -1147,12 +1660,6 @@ export interface ModelsUpdatePropertyRequest {
      * @type {number}
      * @memberof ModelsUpdatePropertyRequest
      */
-    'buy_price'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof ModelsUpdatePropertyRequest
-     */
     'current_value'?: number;
     /**
      * 
@@ -1162,10 +1669,22 @@ export interface ModelsUpdatePropertyRequest {
     'description'?: string;
     /**
      * 
+     * @type {number}
+     * @memberof ModelsUpdatePropertyRequest
+     */
+    'fee_amount'?: number;
+    /**
+     * 
      * @type {boolean}
      * @memberof ModelsUpdatePropertyRequest
      */
     'is_active'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof ModelsUpdatePropertyRequest
+     */
+    'monthly_rent'?: number;
     /**
      * 
      * @type {string}
@@ -1177,7 +1696,19 @@ export interface ModelsUpdatePropertyRequest {
      * @type {string}
      * @memberof ModelsUpdatePropertyRequest
      */
+    'property_type'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsUpdatePropertyRequest
+     */
     'purchase_date'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ModelsUpdatePropertyRequest
+     */
+    'purchase_price'?: number;
     /**
      * 
      * @type {number}
@@ -1230,6 +1761,55 @@ export interface ModelsUpdateRealEstateTransactionRequest {
 }
 
 
+/**
+ * 
+ * @export
+ * @interface ModelsUpdateTenantRequest
+ */
+export interface ModelsUpdateTenantRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsUpdateTenantRequest
+     */
+    'address'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsUpdateTenantRequest
+     */
+    'agreement_from_date'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsUpdateTenantRequest
+     */
+    'agreement_to_date'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsUpdateTenantRequest
+     */
+    'contact'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ModelsUpdateTenantRequest
+     */
+    'deposit_amount'?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ModelsUpdateTenantRequest
+     */
+    'is_active'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof ModelsUpdateTenantRequest
+     */
+    'name'?: string;
+}
 /**
  * 
  * @export
@@ -1321,6 +1901,19 @@ export interface ModelsUser {
      * @memberof ModelsUser
      */
     'updated_at'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface MortgagesGet200Response
+ */
+export interface MortgagesGet200Response {
+    /**
+     * 
+     * @type {Array<ModelsMortgage>}
+     * @memberof MortgagesGet200Response
+     */
+    'mortgages'?: Array<ModelsMortgage>;
 }
 /**
  * 
@@ -1474,6 +2067,19 @@ export interface StatsYearlyGet200Response {
      * @memberof StatsYearlyGet200Response
      */
     'months'?: Array<ModelsMonthlyStats>;
+}
+/**
+ * 
+ * @export
+ * @interface TenantsGet200Response
+ */
+export interface TenantsGet200Response {
+    /**
+     * 
+     * @type {Array<ModelsTenant>}
+     * @memberof TenantsGet200Response
+     */
+    'tenants'?: Array<ModelsTenant>;
 }
 
 /**
@@ -2371,6 +2977,1107 @@ export const CategoriesGetTypeEnum = {
     Expense: 'EXPENSE'
 } as const;
 export type CategoriesGetTypeEnum = typeof CategoriesGetTypeEnum[keyof typeof CategoriesGetTypeEnum];
+
+
+/**
+ * InspectionsApi - axios parameter creator
+ * @export
+ */
+export const InspectionsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Get all inspections for the authenticated user with optional filtering
+         * @summary Get all inspections
+         * @param {string} [propertyId] Filter by property ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        inspectionsGet: async (propertyId?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/inspections`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+            if (propertyId !== undefined) {
+                localVarQueryParameter['property_id'] = propertyId;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Soft delete an inspection by ID
+         * @summary Delete inspection
+         * @param {string} id Inspection ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        inspectionsIdDelete: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('inspectionsIdDelete', 'id', id)
+            const localVarPath = `/inspections/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get a specific inspection by ID
+         * @summary Get inspection by ID
+         * @param {string} id Inspection ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        inspectionsIdGet: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('inspectionsIdGet', 'id', id)
+            const localVarPath = `/inspections/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update a specific inspection by ID
+         * @summary Update inspection
+         * @param {string} id Inspection ID
+         * @param {ModelsUpdateInspectionRequest} inspection Inspection update data
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        inspectionsIdPut: async (id: string, inspection: ModelsUpdateInspectionRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('inspectionsIdPut', 'id', id)
+            // verify required parameter 'inspection' is not null or undefined
+            assertParamExists('inspectionsIdPut', 'inspection', inspection)
+            const localVarPath = `/inspections/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inspection, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Create a new inspection for a property
+         * @summary Create a new inspection
+         * @param {ModelsCreateInspectionRequest} inspection Inspection data
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        inspectionsPost: async (inspection: ModelsCreateInspectionRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'inspection' is not null or undefined
+            assertParamExists('inspectionsPost', 'inspection', inspection)
+            const localVarPath = `/inspections`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inspection, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * InspectionsApi - functional programming interface
+ * @export
+ */
+export const InspectionsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = InspectionsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Get all inspections for the authenticated user with optional filtering
+         * @summary Get all inspections
+         * @param {string} [propertyId] Filter by property ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async inspectionsGet(propertyId?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InspectionsGet200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.inspectionsGet(propertyId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['InspectionsApi.inspectionsGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Soft delete an inspection by ID
+         * @summary Delete inspection
+         * @param {string} id Inspection ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async inspectionsIdDelete(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthAcceptInvitationPost200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.inspectionsIdDelete(id, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['InspectionsApi.inspectionsIdDelete']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Get a specific inspection by ID
+         * @summary Get inspection by ID
+         * @param {string} id Inspection ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async inspectionsIdGet(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ModelsInspection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.inspectionsIdGet(id, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['InspectionsApi.inspectionsIdGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Update a specific inspection by ID
+         * @summary Update inspection
+         * @param {string} id Inspection ID
+         * @param {ModelsUpdateInspectionRequest} inspection Inspection update data
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async inspectionsIdPut(id: string, inspection: ModelsUpdateInspectionRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ModelsInspection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.inspectionsIdPut(id, inspection, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['InspectionsApi.inspectionsIdPut']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Create a new inspection for a property
+         * @summary Create a new inspection
+         * @param {ModelsCreateInspectionRequest} inspection Inspection data
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async inspectionsPost(inspection: ModelsCreateInspectionRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ModelsInspection>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.inspectionsPost(inspection, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['InspectionsApi.inspectionsPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * InspectionsApi - factory interface
+ * @export
+ */
+export const InspectionsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = InspectionsApiFp(configuration)
+    return {
+        /**
+         * Get all inspections for the authenticated user with optional filtering
+         * @summary Get all inspections
+         * @param {InspectionsApiInspectionsGetRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        inspectionsGet(requestParameters: InspectionsApiInspectionsGetRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<InspectionsGet200Response> {
+            return localVarFp.inspectionsGet(requestParameters.propertyId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Soft delete an inspection by ID
+         * @summary Delete inspection
+         * @param {InspectionsApiInspectionsIdDeleteRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        inspectionsIdDelete(requestParameters: InspectionsApiInspectionsIdDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<AuthAcceptInvitationPost200Response> {
+            return localVarFp.inspectionsIdDelete(requestParameters.id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get a specific inspection by ID
+         * @summary Get inspection by ID
+         * @param {InspectionsApiInspectionsIdGetRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        inspectionsIdGet(requestParameters: InspectionsApiInspectionsIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<ModelsInspection> {
+            return localVarFp.inspectionsIdGet(requestParameters.id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Update a specific inspection by ID
+         * @summary Update inspection
+         * @param {InspectionsApiInspectionsIdPutRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        inspectionsIdPut(requestParameters: InspectionsApiInspectionsIdPutRequest, options?: RawAxiosRequestConfig): AxiosPromise<ModelsInspection> {
+            return localVarFp.inspectionsIdPut(requestParameters.id, requestParameters.inspection, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Create a new inspection for a property
+         * @summary Create a new inspection
+         * @param {InspectionsApiInspectionsPostRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        inspectionsPost(requestParameters: InspectionsApiInspectionsPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<ModelsInspection> {
+            return localVarFp.inspectionsPost(requestParameters.inspection, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * InspectionsApi - interface
+ * @export
+ * @interface InspectionsApi
+ */
+export interface InspectionsApiInterface {
+    /**
+     * Get all inspections for the authenticated user with optional filtering
+     * @summary Get all inspections
+     * @param {InspectionsApiInspectionsGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InspectionsApiInterface
+     */
+    inspectionsGet(requestParameters?: InspectionsApiInspectionsGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<InspectionsGet200Response>;
+
+    /**
+     * Soft delete an inspection by ID
+     * @summary Delete inspection
+     * @param {InspectionsApiInspectionsIdDeleteRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InspectionsApiInterface
+     */
+    inspectionsIdDelete(requestParameters: InspectionsApiInspectionsIdDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<AuthAcceptInvitationPost200Response>;
+
+    /**
+     * Get a specific inspection by ID
+     * @summary Get inspection by ID
+     * @param {InspectionsApiInspectionsIdGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InspectionsApiInterface
+     */
+    inspectionsIdGet(requestParameters: InspectionsApiInspectionsIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<ModelsInspection>;
+
+    /**
+     * Update a specific inspection by ID
+     * @summary Update inspection
+     * @param {InspectionsApiInspectionsIdPutRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InspectionsApiInterface
+     */
+    inspectionsIdPut(requestParameters: InspectionsApiInspectionsIdPutRequest, options?: RawAxiosRequestConfig): AxiosPromise<ModelsInspection>;
+
+    /**
+     * Create a new inspection for a property
+     * @summary Create a new inspection
+     * @param {InspectionsApiInspectionsPostRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InspectionsApiInterface
+     */
+    inspectionsPost(requestParameters: InspectionsApiInspectionsPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<ModelsInspection>;
+
+}
+
+/**
+ * Request parameters for inspectionsGet operation in InspectionsApi.
+ * @export
+ * @interface InspectionsApiInspectionsGetRequest
+ */
+export interface InspectionsApiInspectionsGetRequest {
+    /**
+     * Filter by property ID
+     * @type {string}
+     * @memberof InspectionsApiInspectionsGet
+     */
+    readonly propertyId?: string
+}
+
+/**
+ * Request parameters for inspectionsIdDelete operation in InspectionsApi.
+ * @export
+ * @interface InspectionsApiInspectionsIdDeleteRequest
+ */
+export interface InspectionsApiInspectionsIdDeleteRequest {
+    /**
+     * Inspection ID
+     * @type {string}
+     * @memberof InspectionsApiInspectionsIdDelete
+     */
+    readonly id: string
+}
+
+/**
+ * Request parameters for inspectionsIdGet operation in InspectionsApi.
+ * @export
+ * @interface InspectionsApiInspectionsIdGetRequest
+ */
+export interface InspectionsApiInspectionsIdGetRequest {
+    /**
+     * Inspection ID
+     * @type {string}
+     * @memberof InspectionsApiInspectionsIdGet
+     */
+    readonly id: string
+}
+
+/**
+ * Request parameters for inspectionsIdPut operation in InspectionsApi.
+ * @export
+ * @interface InspectionsApiInspectionsIdPutRequest
+ */
+export interface InspectionsApiInspectionsIdPutRequest {
+    /**
+     * Inspection ID
+     * @type {string}
+     * @memberof InspectionsApiInspectionsIdPut
+     */
+    readonly id: string
+
+    /**
+     * Inspection update data
+     * @type {ModelsUpdateInspectionRequest}
+     * @memberof InspectionsApiInspectionsIdPut
+     */
+    readonly inspection: ModelsUpdateInspectionRequest
+}
+
+/**
+ * Request parameters for inspectionsPost operation in InspectionsApi.
+ * @export
+ * @interface InspectionsApiInspectionsPostRequest
+ */
+export interface InspectionsApiInspectionsPostRequest {
+    /**
+     * Inspection data
+     * @type {ModelsCreateInspectionRequest}
+     * @memberof InspectionsApiInspectionsPost
+     */
+    readonly inspection: ModelsCreateInspectionRequest
+}
+
+/**
+ * InspectionsApi - object-oriented interface
+ * @export
+ * @class InspectionsApi
+ * @extends {BaseAPI}
+ */
+export class InspectionsApi extends BaseAPI implements InspectionsApiInterface {
+    /**
+     * Get all inspections for the authenticated user with optional filtering
+     * @summary Get all inspections
+     * @param {InspectionsApiInspectionsGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InspectionsApi
+     */
+    public inspectionsGet(requestParameters: InspectionsApiInspectionsGetRequest = {}, options?: RawAxiosRequestConfig) {
+        return InspectionsApiFp(this.configuration).inspectionsGet(requestParameters.propertyId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Soft delete an inspection by ID
+     * @summary Delete inspection
+     * @param {InspectionsApiInspectionsIdDeleteRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InspectionsApi
+     */
+    public inspectionsIdDelete(requestParameters: InspectionsApiInspectionsIdDeleteRequest, options?: RawAxiosRequestConfig) {
+        return InspectionsApiFp(this.configuration).inspectionsIdDelete(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get a specific inspection by ID
+     * @summary Get inspection by ID
+     * @param {InspectionsApiInspectionsIdGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InspectionsApi
+     */
+    public inspectionsIdGet(requestParameters: InspectionsApiInspectionsIdGetRequest, options?: RawAxiosRequestConfig) {
+        return InspectionsApiFp(this.configuration).inspectionsIdGet(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Update a specific inspection by ID
+     * @summary Update inspection
+     * @param {InspectionsApiInspectionsIdPutRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InspectionsApi
+     */
+    public inspectionsIdPut(requestParameters: InspectionsApiInspectionsIdPutRequest, options?: RawAxiosRequestConfig) {
+        return InspectionsApiFp(this.configuration).inspectionsIdPut(requestParameters.id, requestParameters.inspection, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Create a new inspection for a property
+     * @summary Create a new inspection
+     * @param {InspectionsApiInspectionsPostRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof InspectionsApi
+     */
+    public inspectionsPost(requestParameters: InspectionsApiInspectionsPostRequest, options?: RawAxiosRequestConfig) {
+        return InspectionsApiFp(this.configuration).inspectionsPost(requestParameters.inspection, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * MortgagesApi - axios parameter creator
+ * @export
+ */
+export const MortgagesApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Get all mortgages for the authenticated user with optional property filter
+         * @summary Get all mortgages
+         * @param {string} [propertyId] Property ID
+         * @param {boolean} [isActive] Filter by active status
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        mortgagesGet: async (propertyId?: string, isActive?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/mortgages`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+            if (propertyId !== undefined) {
+                localVarQueryParameter['property_id'] = propertyId;
+            }
+
+            if (isActive !== undefined) {
+                localVarQueryParameter['is_active'] = isActive;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Soft delete a mortgage by ID
+         * @summary Delete mortgage
+         * @param {string} id Mortgage ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        mortgagesIdDelete: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('mortgagesIdDelete', 'id', id)
+            const localVarPath = `/mortgages/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get a specific mortgage by ID
+         * @summary Get mortgage by ID
+         * @param {string} id Mortgage ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        mortgagesIdGet: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('mortgagesIdGet', 'id', id)
+            const localVarPath = `/mortgages/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update a specific mortgage by ID
+         * @summary Update mortgage
+         * @param {string} id Mortgage ID
+         * @param {ModelsUpdateMortgageRequest} mortgage Mortgage update data
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        mortgagesIdPut: async (id: string, mortgage: ModelsUpdateMortgageRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('mortgagesIdPut', 'id', id)
+            // verify required parameter 'mortgage' is not null or undefined
+            assertParamExists('mortgagesIdPut', 'mortgage', mortgage)
+            const localVarPath = `/mortgages/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(mortgage, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Create a new mortgage for a property
+         * @summary Create a new mortgage
+         * @param {ModelsCreateMortgageRequest} mortgage Mortgage data
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        mortgagesPost: async (mortgage: ModelsCreateMortgageRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'mortgage' is not null or undefined
+            assertParamExists('mortgagesPost', 'mortgage', mortgage)
+            const localVarPath = `/mortgages`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(mortgage, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * MortgagesApi - functional programming interface
+ * @export
+ */
+export const MortgagesApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = MortgagesApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Get all mortgages for the authenticated user with optional property filter
+         * @summary Get all mortgages
+         * @param {string} [propertyId] Property ID
+         * @param {boolean} [isActive] Filter by active status
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async mortgagesGet(propertyId?: string, isActive?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MortgagesGet200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.mortgagesGet(propertyId, isActive, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MortgagesApi.mortgagesGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Soft delete a mortgage by ID
+         * @summary Delete mortgage
+         * @param {string} id Mortgage ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async mortgagesIdDelete(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthAcceptInvitationPost200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.mortgagesIdDelete(id, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MortgagesApi.mortgagesIdDelete']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Get a specific mortgage by ID
+         * @summary Get mortgage by ID
+         * @param {string} id Mortgage ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async mortgagesIdGet(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ModelsMortgage>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.mortgagesIdGet(id, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MortgagesApi.mortgagesIdGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Update a specific mortgage by ID
+         * @summary Update mortgage
+         * @param {string} id Mortgage ID
+         * @param {ModelsUpdateMortgageRequest} mortgage Mortgage update data
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async mortgagesIdPut(id: string, mortgage: ModelsUpdateMortgageRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ModelsMortgage>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.mortgagesIdPut(id, mortgage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MortgagesApi.mortgagesIdPut']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Create a new mortgage for a property
+         * @summary Create a new mortgage
+         * @param {ModelsCreateMortgageRequest} mortgage Mortgage data
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async mortgagesPost(mortgage: ModelsCreateMortgageRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ModelsMortgage>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.mortgagesPost(mortgage, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['MortgagesApi.mortgagesPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * MortgagesApi - factory interface
+ * @export
+ */
+export const MortgagesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = MortgagesApiFp(configuration)
+    return {
+        /**
+         * Get all mortgages for the authenticated user with optional property filter
+         * @summary Get all mortgages
+         * @param {MortgagesApiMortgagesGetRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        mortgagesGet(requestParameters: MortgagesApiMortgagesGetRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<MortgagesGet200Response> {
+            return localVarFp.mortgagesGet(requestParameters.propertyId, requestParameters.isActive, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Soft delete a mortgage by ID
+         * @summary Delete mortgage
+         * @param {MortgagesApiMortgagesIdDeleteRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        mortgagesIdDelete(requestParameters: MortgagesApiMortgagesIdDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<AuthAcceptInvitationPost200Response> {
+            return localVarFp.mortgagesIdDelete(requestParameters.id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get a specific mortgage by ID
+         * @summary Get mortgage by ID
+         * @param {MortgagesApiMortgagesIdGetRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        mortgagesIdGet(requestParameters: MortgagesApiMortgagesIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<ModelsMortgage> {
+            return localVarFp.mortgagesIdGet(requestParameters.id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Update a specific mortgage by ID
+         * @summary Update mortgage
+         * @param {MortgagesApiMortgagesIdPutRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        mortgagesIdPut(requestParameters: MortgagesApiMortgagesIdPutRequest, options?: RawAxiosRequestConfig): AxiosPromise<ModelsMortgage> {
+            return localVarFp.mortgagesIdPut(requestParameters.id, requestParameters.mortgage, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Create a new mortgage for a property
+         * @summary Create a new mortgage
+         * @param {MortgagesApiMortgagesPostRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        mortgagesPost(requestParameters: MortgagesApiMortgagesPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<ModelsMortgage> {
+            return localVarFp.mortgagesPost(requestParameters.mortgage, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * MortgagesApi - interface
+ * @export
+ * @interface MortgagesApi
+ */
+export interface MortgagesApiInterface {
+    /**
+     * Get all mortgages for the authenticated user with optional property filter
+     * @summary Get all mortgages
+     * @param {MortgagesApiMortgagesGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MortgagesApiInterface
+     */
+    mortgagesGet(requestParameters?: MortgagesApiMortgagesGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<MortgagesGet200Response>;
+
+    /**
+     * Soft delete a mortgage by ID
+     * @summary Delete mortgage
+     * @param {MortgagesApiMortgagesIdDeleteRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MortgagesApiInterface
+     */
+    mortgagesIdDelete(requestParameters: MortgagesApiMortgagesIdDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<AuthAcceptInvitationPost200Response>;
+
+    /**
+     * Get a specific mortgage by ID
+     * @summary Get mortgage by ID
+     * @param {MortgagesApiMortgagesIdGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MortgagesApiInterface
+     */
+    mortgagesIdGet(requestParameters: MortgagesApiMortgagesIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<ModelsMortgage>;
+
+    /**
+     * Update a specific mortgage by ID
+     * @summary Update mortgage
+     * @param {MortgagesApiMortgagesIdPutRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MortgagesApiInterface
+     */
+    mortgagesIdPut(requestParameters: MortgagesApiMortgagesIdPutRequest, options?: RawAxiosRequestConfig): AxiosPromise<ModelsMortgage>;
+
+    /**
+     * Create a new mortgage for a property
+     * @summary Create a new mortgage
+     * @param {MortgagesApiMortgagesPostRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MortgagesApiInterface
+     */
+    mortgagesPost(requestParameters: MortgagesApiMortgagesPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<ModelsMortgage>;
+
+}
+
+/**
+ * Request parameters for mortgagesGet operation in MortgagesApi.
+ * @export
+ * @interface MortgagesApiMortgagesGetRequest
+ */
+export interface MortgagesApiMortgagesGetRequest {
+    /**
+     * Property ID
+     * @type {string}
+     * @memberof MortgagesApiMortgagesGet
+     */
+    readonly propertyId?: string
+
+    /**
+     * Filter by active status
+     * @type {boolean}
+     * @memberof MortgagesApiMortgagesGet
+     */
+    readonly isActive?: boolean
+}
+
+/**
+ * Request parameters for mortgagesIdDelete operation in MortgagesApi.
+ * @export
+ * @interface MortgagesApiMortgagesIdDeleteRequest
+ */
+export interface MortgagesApiMortgagesIdDeleteRequest {
+    /**
+     * Mortgage ID
+     * @type {string}
+     * @memberof MortgagesApiMortgagesIdDelete
+     */
+    readonly id: string
+}
+
+/**
+ * Request parameters for mortgagesIdGet operation in MortgagesApi.
+ * @export
+ * @interface MortgagesApiMortgagesIdGetRequest
+ */
+export interface MortgagesApiMortgagesIdGetRequest {
+    /**
+     * Mortgage ID
+     * @type {string}
+     * @memberof MortgagesApiMortgagesIdGet
+     */
+    readonly id: string
+}
+
+/**
+ * Request parameters for mortgagesIdPut operation in MortgagesApi.
+ * @export
+ * @interface MortgagesApiMortgagesIdPutRequest
+ */
+export interface MortgagesApiMortgagesIdPutRequest {
+    /**
+     * Mortgage ID
+     * @type {string}
+     * @memberof MortgagesApiMortgagesIdPut
+     */
+    readonly id: string
+
+    /**
+     * Mortgage update data
+     * @type {ModelsUpdateMortgageRequest}
+     * @memberof MortgagesApiMortgagesIdPut
+     */
+    readonly mortgage: ModelsUpdateMortgageRequest
+}
+
+/**
+ * Request parameters for mortgagesPost operation in MortgagesApi.
+ * @export
+ * @interface MortgagesApiMortgagesPostRequest
+ */
+export interface MortgagesApiMortgagesPostRequest {
+    /**
+     * Mortgage data
+     * @type {ModelsCreateMortgageRequest}
+     * @memberof MortgagesApiMortgagesPost
+     */
+    readonly mortgage: ModelsCreateMortgageRequest
+}
+
+/**
+ * MortgagesApi - object-oriented interface
+ * @export
+ * @class MortgagesApi
+ * @extends {BaseAPI}
+ */
+export class MortgagesApi extends BaseAPI implements MortgagesApiInterface {
+    /**
+     * Get all mortgages for the authenticated user with optional property filter
+     * @summary Get all mortgages
+     * @param {MortgagesApiMortgagesGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MortgagesApi
+     */
+    public mortgagesGet(requestParameters: MortgagesApiMortgagesGetRequest = {}, options?: RawAxiosRequestConfig) {
+        return MortgagesApiFp(this.configuration).mortgagesGet(requestParameters.propertyId, requestParameters.isActive, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Soft delete a mortgage by ID
+     * @summary Delete mortgage
+     * @param {MortgagesApiMortgagesIdDeleteRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MortgagesApi
+     */
+    public mortgagesIdDelete(requestParameters: MortgagesApiMortgagesIdDeleteRequest, options?: RawAxiosRequestConfig) {
+        return MortgagesApiFp(this.configuration).mortgagesIdDelete(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get a specific mortgage by ID
+     * @summary Get mortgage by ID
+     * @param {MortgagesApiMortgagesIdGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MortgagesApi
+     */
+    public mortgagesIdGet(requestParameters: MortgagesApiMortgagesIdGetRequest, options?: RawAxiosRequestConfig) {
+        return MortgagesApiFp(this.configuration).mortgagesIdGet(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Update a specific mortgage by ID
+     * @summary Update mortgage
+     * @param {MortgagesApiMortgagesIdPutRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MortgagesApi
+     */
+    public mortgagesIdPut(requestParameters: MortgagesApiMortgagesIdPutRequest, options?: RawAxiosRequestConfig) {
+        return MortgagesApiFp(this.configuration).mortgagesIdPut(requestParameters.id, requestParameters.mortgage, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Create a new mortgage for a property
+     * @summary Create a new mortgage
+     * @param {MortgagesApiMortgagesPostRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MortgagesApi
+     */
+    public mortgagesPost(requestParameters: MortgagesApiMortgagesPostRequest, options?: RawAxiosRequestConfig) {
+        return MortgagesApiFp(this.configuration).mortgagesPost(requestParameters.mortgage, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
 
 
 /**
@@ -4289,6 +5996,563 @@ export const StatsCategoriesGetTypeEnum = {
     Expense: 'EXPENSE'
 } as const;
 export type StatsCategoriesGetTypeEnum = typeof StatsCategoriesGetTypeEnum[keyof typeof StatsCategoriesGetTypeEnum];
+
+
+/**
+ * TenantsApi - axios parameter creator
+ * @export
+ */
+export const TenantsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Get all tenants for the authenticated user with optional filtering
+         * @summary Get all tenants
+         * @param {string} [propertyId] Filter by property ID
+         * @param {boolean} [isActive] Filter by active status
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        tenantsGet: async (propertyId?: string, isActive?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/tenants`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+            if (propertyId !== undefined) {
+                localVarQueryParameter['property_id'] = propertyId;
+            }
+
+            if (isActive !== undefined) {
+                localVarQueryParameter['is_active'] = isActive;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Soft delete a tenant by ID
+         * @summary Delete tenant
+         * @param {string} id Tenant ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        tenantsIdDelete: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('tenantsIdDelete', 'id', id)
+            const localVarPath = `/tenants/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get a specific tenant by ID
+         * @summary Get tenant by ID
+         * @param {string} id Tenant ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        tenantsIdGet: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('tenantsIdGet', 'id', id)
+            const localVarPath = `/tenants/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update a specific tenant by ID
+         * @summary Update tenant
+         * @param {string} id Tenant ID
+         * @param {ModelsUpdateTenantRequest} tenant Tenant update data
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        tenantsIdPut: async (id: string, tenant: ModelsUpdateTenantRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('tenantsIdPut', 'id', id)
+            // verify required parameter 'tenant' is not null or undefined
+            assertParamExists('tenantsIdPut', 'tenant', tenant)
+            const localVarPath = `/tenants/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(tenant, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Create a new tenant for a property
+         * @summary Create a new tenant
+         * @param {ModelsCreateTenantRequest} tenant Tenant data
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        tenantsPost: async (tenant: ModelsCreateTenantRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'tenant' is not null or undefined
+            assertParamExists('tenantsPost', 'tenant', tenant)
+            const localVarPath = `/tenants`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(tenant, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * TenantsApi - functional programming interface
+ * @export
+ */
+export const TenantsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = TenantsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Get all tenants for the authenticated user with optional filtering
+         * @summary Get all tenants
+         * @param {string} [propertyId] Filter by property ID
+         * @param {boolean} [isActive] Filter by active status
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async tenantsGet(propertyId?: string, isActive?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TenantsGet200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.tenantsGet(propertyId, isActive, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TenantsApi.tenantsGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Soft delete a tenant by ID
+         * @summary Delete tenant
+         * @param {string} id Tenant ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async tenantsIdDelete(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthAcceptInvitationPost200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.tenantsIdDelete(id, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TenantsApi.tenantsIdDelete']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Get a specific tenant by ID
+         * @summary Get tenant by ID
+         * @param {string} id Tenant ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async tenantsIdGet(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ModelsTenant>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.tenantsIdGet(id, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TenantsApi.tenantsIdGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Update a specific tenant by ID
+         * @summary Update tenant
+         * @param {string} id Tenant ID
+         * @param {ModelsUpdateTenantRequest} tenant Tenant update data
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async tenantsIdPut(id: string, tenant: ModelsUpdateTenantRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ModelsTenant>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.tenantsIdPut(id, tenant, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TenantsApi.tenantsIdPut']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Create a new tenant for a property
+         * @summary Create a new tenant
+         * @param {ModelsCreateTenantRequest} tenant Tenant data
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async tenantsPost(tenant: ModelsCreateTenantRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ModelsTenant>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.tenantsPost(tenant, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TenantsApi.tenantsPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * TenantsApi - factory interface
+ * @export
+ */
+export const TenantsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = TenantsApiFp(configuration)
+    return {
+        /**
+         * Get all tenants for the authenticated user with optional filtering
+         * @summary Get all tenants
+         * @param {TenantsApiTenantsGetRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        tenantsGet(requestParameters: TenantsApiTenantsGetRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<TenantsGet200Response> {
+            return localVarFp.tenantsGet(requestParameters.propertyId, requestParameters.isActive, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Soft delete a tenant by ID
+         * @summary Delete tenant
+         * @param {TenantsApiTenantsIdDeleteRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        tenantsIdDelete(requestParameters: TenantsApiTenantsIdDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<AuthAcceptInvitationPost200Response> {
+            return localVarFp.tenantsIdDelete(requestParameters.id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get a specific tenant by ID
+         * @summary Get tenant by ID
+         * @param {TenantsApiTenantsIdGetRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        tenantsIdGet(requestParameters: TenantsApiTenantsIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<ModelsTenant> {
+            return localVarFp.tenantsIdGet(requestParameters.id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Update a specific tenant by ID
+         * @summary Update tenant
+         * @param {TenantsApiTenantsIdPutRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        tenantsIdPut(requestParameters: TenantsApiTenantsIdPutRequest, options?: RawAxiosRequestConfig): AxiosPromise<ModelsTenant> {
+            return localVarFp.tenantsIdPut(requestParameters.id, requestParameters.tenant, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Create a new tenant for a property
+         * @summary Create a new tenant
+         * @param {TenantsApiTenantsPostRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        tenantsPost(requestParameters: TenantsApiTenantsPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<ModelsTenant> {
+            return localVarFp.tenantsPost(requestParameters.tenant, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * TenantsApi - interface
+ * @export
+ * @interface TenantsApi
+ */
+export interface TenantsApiInterface {
+    /**
+     * Get all tenants for the authenticated user with optional filtering
+     * @summary Get all tenants
+     * @param {TenantsApiTenantsGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TenantsApiInterface
+     */
+    tenantsGet(requestParameters?: TenantsApiTenantsGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<TenantsGet200Response>;
+
+    /**
+     * Soft delete a tenant by ID
+     * @summary Delete tenant
+     * @param {TenantsApiTenantsIdDeleteRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TenantsApiInterface
+     */
+    tenantsIdDelete(requestParameters: TenantsApiTenantsIdDeleteRequest, options?: RawAxiosRequestConfig): AxiosPromise<AuthAcceptInvitationPost200Response>;
+
+    /**
+     * Get a specific tenant by ID
+     * @summary Get tenant by ID
+     * @param {TenantsApiTenantsIdGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TenantsApiInterface
+     */
+    tenantsIdGet(requestParameters: TenantsApiTenantsIdGetRequest, options?: RawAxiosRequestConfig): AxiosPromise<ModelsTenant>;
+
+    /**
+     * Update a specific tenant by ID
+     * @summary Update tenant
+     * @param {TenantsApiTenantsIdPutRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TenantsApiInterface
+     */
+    tenantsIdPut(requestParameters: TenantsApiTenantsIdPutRequest, options?: RawAxiosRequestConfig): AxiosPromise<ModelsTenant>;
+
+    /**
+     * Create a new tenant for a property
+     * @summary Create a new tenant
+     * @param {TenantsApiTenantsPostRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TenantsApiInterface
+     */
+    tenantsPost(requestParameters: TenantsApiTenantsPostRequest, options?: RawAxiosRequestConfig): AxiosPromise<ModelsTenant>;
+
+}
+
+/**
+ * Request parameters for tenantsGet operation in TenantsApi.
+ * @export
+ * @interface TenantsApiTenantsGetRequest
+ */
+export interface TenantsApiTenantsGetRequest {
+    /**
+     * Filter by property ID
+     * @type {string}
+     * @memberof TenantsApiTenantsGet
+     */
+    readonly propertyId?: string
+
+    /**
+     * Filter by active status
+     * @type {boolean}
+     * @memberof TenantsApiTenantsGet
+     */
+    readonly isActive?: boolean
+}
+
+/**
+ * Request parameters for tenantsIdDelete operation in TenantsApi.
+ * @export
+ * @interface TenantsApiTenantsIdDeleteRequest
+ */
+export interface TenantsApiTenantsIdDeleteRequest {
+    /**
+     * Tenant ID
+     * @type {string}
+     * @memberof TenantsApiTenantsIdDelete
+     */
+    readonly id: string
+}
+
+/**
+ * Request parameters for tenantsIdGet operation in TenantsApi.
+ * @export
+ * @interface TenantsApiTenantsIdGetRequest
+ */
+export interface TenantsApiTenantsIdGetRequest {
+    /**
+     * Tenant ID
+     * @type {string}
+     * @memberof TenantsApiTenantsIdGet
+     */
+    readonly id: string
+}
+
+/**
+ * Request parameters for tenantsIdPut operation in TenantsApi.
+ * @export
+ * @interface TenantsApiTenantsIdPutRequest
+ */
+export interface TenantsApiTenantsIdPutRequest {
+    /**
+     * Tenant ID
+     * @type {string}
+     * @memberof TenantsApiTenantsIdPut
+     */
+    readonly id: string
+
+    /**
+     * Tenant update data
+     * @type {ModelsUpdateTenantRequest}
+     * @memberof TenantsApiTenantsIdPut
+     */
+    readonly tenant: ModelsUpdateTenantRequest
+}
+
+/**
+ * Request parameters for tenantsPost operation in TenantsApi.
+ * @export
+ * @interface TenantsApiTenantsPostRequest
+ */
+export interface TenantsApiTenantsPostRequest {
+    /**
+     * Tenant data
+     * @type {ModelsCreateTenantRequest}
+     * @memberof TenantsApiTenantsPost
+     */
+    readonly tenant: ModelsCreateTenantRequest
+}
+
+/**
+ * TenantsApi - object-oriented interface
+ * @export
+ * @class TenantsApi
+ * @extends {BaseAPI}
+ */
+export class TenantsApi extends BaseAPI implements TenantsApiInterface {
+    /**
+     * Get all tenants for the authenticated user with optional filtering
+     * @summary Get all tenants
+     * @param {TenantsApiTenantsGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TenantsApi
+     */
+    public tenantsGet(requestParameters: TenantsApiTenantsGetRequest = {}, options?: RawAxiosRequestConfig) {
+        return TenantsApiFp(this.configuration).tenantsGet(requestParameters.propertyId, requestParameters.isActive, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Soft delete a tenant by ID
+     * @summary Delete tenant
+     * @param {TenantsApiTenantsIdDeleteRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TenantsApi
+     */
+    public tenantsIdDelete(requestParameters: TenantsApiTenantsIdDeleteRequest, options?: RawAxiosRequestConfig) {
+        return TenantsApiFp(this.configuration).tenantsIdDelete(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Get a specific tenant by ID
+     * @summary Get tenant by ID
+     * @param {TenantsApiTenantsIdGetRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TenantsApi
+     */
+    public tenantsIdGet(requestParameters: TenantsApiTenantsIdGetRequest, options?: RawAxiosRequestConfig) {
+        return TenantsApiFp(this.configuration).tenantsIdGet(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Update a specific tenant by ID
+     * @summary Update tenant
+     * @param {TenantsApiTenantsIdPutRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TenantsApi
+     */
+    public tenantsIdPut(requestParameters: TenantsApiTenantsIdPutRequest, options?: RawAxiosRequestConfig) {
+        return TenantsApiFp(this.configuration).tenantsIdPut(requestParameters.id, requestParameters.tenant, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Create a new tenant for a property
+     * @summary Create a new tenant
+     * @param {TenantsApiTenantsPostRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TenantsApi
+     */
+    public tenantsPost(requestParameters: TenantsApiTenantsPostRequest, options?: RawAxiosRequestConfig) {
+        return TenantsApiFp(this.configuration).tenantsPost(requestParameters.tenant, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
 
 
 /**

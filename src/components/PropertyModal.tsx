@@ -24,6 +24,8 @@ export default function PropertyModal({
     current_value: '',
     purchase_date: format(new Date(), 'yyyy-MM-dd'),
     remaining_debt: '',
+    monthly_rent: '',
+    fee_amount: '',
     description: ''
   })
   const [loading, setLoading] = useState(false)
@@ -36,10 +38,12 @@ export default function PropertyModal({
         setFormData({
           name: property.name || '',
           address: property.address || '',
-          buy_price: property.buy_price?.toString() || '',
+          buy_price: property.purchase_price?.toString() || '',
           current_value: property.current_value?.toString() || '',
           purchase_date: property.purchase_date ? property.purchase_date.split('T')[0] : format(new Date(), 'yyyy-MM-dd'),
           remaining_debt: property.remaining_debt?.toString() || '',
+          monthly_rent: property.monthly_rent?.toString() || '',
+          fee_amount: property.fee_amount?.toString() || '',
           description: property.description || ''
         })
       } else {
@@ -50,6 +54,8 @@ export default function PropertyModal({
           current_value: '',
           purchase_date: format(new Date(), 'yyyy-MM-dd'),
           remaining_debt: '',
+          monthly_rent: '',
+          fee_amount: '',
           description: ''
         })
       }
@@ -78,13 +84,25 @@ export default function PropertyModal({
 
       const fullDateTime = new Date(formData.purchase_date + 'T12:00:00.000Z').toISOString()
       
+      const buyPrice = parseFloat(formData.buy_price)
+      const currentValue = parseFloat(formData.current_value)
+
+      if (isNaN(buyPrice) || buyPrice <= 0) {
+        throw new Error('Purchase price must be a valid number greater than 0')
+      }
+      if (isNaN(currentValue) || currentValue <= 0) {
+        throw new Error('Current value must be a valid number greater than 0')
+      }
+
       const propertyData: ModelsCreatePropertyRequest = {
         name: formData.name.trim(),
         address: formData.address.trim(),
-        buy_price: parseFloat(formData.buy_price),
-        current_value: parseFloat(formData.current_value),
+        purchase_price: buyPrice,
+        current_value: currentValue,
         purchase_date: fullDateTime,
         remaining_debt: formData.remaining_debt ? parseFloat(formData.remaining_debt) : undefined,
+        monthly_rent: formData.monthly_rent ? parseFloat(formData.monthly_rent) : undefined,
+        fee_amount: formData.fee_amount ? parseFloat(formData.fee_amount) : undefined,
         description: formData.description.trim() || undefined
       }
 
@@ -232,6 +250,34 @@ export default function PropertyModal({
                     placeholder="0.00"
                     value={formData.remaining_debt}
                     onChange={(e) => handleNumberChange('remaining_debt', e.target.value)}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="monthly_rent" className="block text-sm font-medium text-gray-700">
+                    Monthly Rent ($)
+                  </label>
+                  <input
+                    type="text"
+                    id="monthly_rent"
+                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="0.00"
+                    value={formData.monthly_rent}
+                    onChange={(e) => handleNumberChange('monthly_rent', e.target.value)}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="fee_amount" className="block text-sm font-medium text-gray-700">
+                    Fee Amount ($)
+                  </label>
+                  <input
+                    type="text"
+                    id="fee_amount"
+                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="0.00"
+                    value={formData.fee_amount}
+                    onChange={(e) => handleNumberChange('fee_amount', e.target.value)}
                   />
                 </div>
 

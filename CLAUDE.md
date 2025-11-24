@@ -1,4 +1,21 @@
-# Track Your Finance Frontend
+# Track Your Finance - Full Stack Project
+
+## IMPORTANT: Full Stack Development Workflow
+**This repository contains the FRONTEND, but Claude will work on BOTH frontend AND backend simultaneously.**
+
+- **Frontend Location**: `/Users/jahom/work/jahom/trackyourfinancefe` (this repo)
+- **Backend Location**: `./backend` symlink → `/Users/jahom/GolandProjects/trackyourfinancebe`
+- **Go Installation**: `/Users/jahom/sdk/go/go1.24.0/bin/go`
+- **GOPATH**: `/Users/jahom/go`
+- **Backend Runtime**: User runs backend via GoLand IDE (debugger listens on 127.0.0.1:59021)
+- **Working Method**: All feature requests should be implemented in BOTH frontend and backend
+- **Workflow**:
+  1. Update backend (Go handlers, models, migrations, Swagger docs)
+  2. User runs backend via GoLand IDE
+  3. Regenerate Swagger: `/Users/jahom/sdk/go/go1.24.0/bin/go install github.com/swaggo/swag/cmd/swag@latest && /Users/jahom/go/bin/swag init -g cmd/server/main.go -o docs` (in backend dir)
+  4. Regenerate API client (`npm run generate-api`) (in frontend dir)
+  5. Update frontend (React components, pages, hooks)
+  6. Test integration
 
 ## Project Overview
 React TypeScript frontend for the Track Your Finance application, built with Vite and Tailwind CSS.

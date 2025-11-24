@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard'
 import SpendingDiary from './pages/SpendingDiary'
 import Categories from './pages/Categories'
 import RealEstate from './pages/RealEstate'
+import PropertyDetail from './pages/PropertyDetail'
 import AcceptInvitation from './pages/AcceptInvitation'
 import ProtectedRoute from './components/ProtectedRoute'
 
@@ -33,6 +34,7 @@ function AppRoutes() {
         <Route path="spending" element={<SpendingDiary />} />
         <Route path="categories" element={<Categories />} />
         <Route path="real-estate" element={<RealEstate />} />
+        <Route path="real-estate/properties/:id" element={<PropertyDetail />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

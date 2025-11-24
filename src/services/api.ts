@@ -1,12 +1,15 @@
-import { 
-  AuthenticationApi, 
-  CategoriesApi, 
-  TransactionsApi, 
-  StatisticsApi, 
+import {
+  AuthenticationApi,
+  CategoriesApi,
+  TransactionsApi,
+  StatisticsApi,
   UserApi,
   PropertiesApi,
   RealEstateTransactionsApi,
   RealEstateStatsApi,
+  TenantsApi,
+  InspectionsApi,
+  MortgagesApi,
   Configuration
 } from '../generated'
 import type {
@@ -35,7 +38,19 @@ import type {
   RealEstateTransactionsGet200Response,
   RealEstateStatsMonthlyGet200Response,
   RealEstateStatsYearlyGet200Response,
-  RealEstateStatsLifetimeGet200Response
+  RealEstateStatsLifetimeGet200Response,
+  ModelsTenant,
+  ModelsCreateTenantRequest,
+  ModelsUpdateTenantRequest,
+  ModelsInspection,
+  ModelsCreateInspectionRequest,
+  ModelsUpdateInspectionRequest,
+  ModelsMortgage,
+  ModelsCreateMortgageRequest,
+  ModelsUpdateMortgageRequest,
+  TenantsGet200Response,
+  InspectionsGet200Response,
+  MortgagesGet200Response
 } from '../generated'
 
 // Create configuration with token interceptor
@@ -61,6 +76,9 @@ const getUserApi = () => new UserApi(createApiConfig())
 const getPropertiesApi = () => new PropertiesApi(createApiConfig())
 const getRealEstateTransactionsApi = () => new RealEstateTransactionsApi(createApiConfig())
 const getRealEstateStatsApi = () => new RealEstateStatsApi(createApiConfig())
+const getTenantsApi = () => new TenantsApi(createApiConfig())
+const getInspectionsApi = () => new InspectionsApi(createApiConfig())
+const getMortgagesApi = () => new MortgagesApi(createApiConfig())
 
 // Export compatible API interfaces
 export const authApi = {
@@ -273,11 +291,104 @@ export const realEstateApi = {
   }
 }
 
+// Tenant API
+export const tenantsApi = {
+  list: async (params?: { property_id?: string; is_active?: boolean }): Promise<ModelsTenant[]> => {
+    const response = await getTenantsApi().tenantsGet({
+      propertyId: params?.property_id,
+      isActive: params?.is_active
+    })
+    const data = response.data as TenantsGet200Response
+    return data.tenants || []
+  },
+
+  get: async (id: string): Promise<ModelsTenant> => {
+    const response = await getTenantsApi().tenantsIdGet({ id })
+    return response.data
+  },
+
+  create: async (data: ModelsCreateTenantRequest): Promise<ModelsTenant> => {
+    const response = await getTenantsApi().tenantsPost({ tenant: data })
+    return response.data
+  },
+
+  update: async (id: string, data: ModelsUpdateTenantRequest): Promise<ModelsTenant> => {
+    const response = await getTenantsApi().tenantsIdPut({ id, tenant: data })
+    return response.data
+  },
+
+  delete: async (id: string): Promise<void> => {
+    await getTenantsApi().tenantsIdDelete({ id })
+  }
+}
+
+// Inspection API
+export const inspectionsApi = {
+  list: async (params?: { property_id?: string }): Promise<ModelsInspection[]> => {
+    const response = await getInspectionsApi().inspectionsGet({
+      propertyId: params?.property_id
+    })
+    const data = response.data as InspectionsGet200Response
+    return data.inspections || []
+  },
+
+  get: async (id: string): Promise<ModelsInspection> => {
+    const response = await getInspectionsApi().inspectionsIdGet({ id })
+    return response.data
+  },
+
+  create: async (data: ModelsCreateInspectionRequest): Promise<ModelsInspection> => {
+    const response = await getInspectionsApi().inspectionsPost({ inspection: data })
+    return response.data
+  },
+
+  update: async (id: string, data: ModelsUpdateInspectionRequest): Promise<ModelsInspection> => {
+    const response = await getInspectionsApi().inspectionsIdPut({ id, inspection: data })
+    return response.data
+  },
+
+  delete: async (id: string): Promise<void> => {
+    await getInspectionsApi().inspectionsIdDelete({ id })
+  }
+}
+
+export const mortgagesApi = {
+  list: async (params?: { property_id?: string; is_active?: boolean }): Promise<ModelsMortgage[]> => {
+    const response = await getMortgagesApi().mortgagesGet({
+      propertyId: params?.property_id,
+      isActive: params?.is_active
+    })
+    const data = response.data as MortgagesGet200Response
+    return data.mortgages || []
+  },
+
+  get: async (id: string): Promise<ModelsMortgage> => {
+    const response = await getMortgagesApi().mortgagesIdGet({ id })
+    return response.data
+  },
+
+  create: async (data: ModelsCreateMortgageRequest): Promise<ModelsMortgage> => {
+    const response = await getMortgagesApi().mortgagesPost({ mortgage: data })
+    return response.data
+  },
+
+  update: async (id: string, data: ModelsUpdateMortgageRequest): Promise<ModelsMortgage> => {
+    const response = await getMortgagesApi().mortgagesIdPut({ id, mortgage: data })
+    return response.data
+  },
+
+  delete: async (id: string): Promise<void> => {
+    await getMortgagesApi().mortgagesIdDelete({ id })
+  }
+}
+
 export default {
   authApi,
   userApi,
   categoriesApi,
   transactionsApi,
   statsApi,
-  realEstateApi
+  realEstateApi,
+  tenantsApi,
+  inspectionsApi
 }

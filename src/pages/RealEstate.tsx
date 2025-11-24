@@ -1,15 +1,20 @@
 import { useState, useEffect } from 'react'
 import { format } from 'date-fns'
-import { realEstateApi } from '../services/api'
-import { PlusIcon, BuildingOfficeIcon, CurrencyDollarIcon, ChartBarIcon } from '@heroicons/react/24/outline'
+import { realEstateApi, tenantsApi, inspectionsApi } from '../services/api'
+import { PlusIcon, BuildingOfficeIcon, CurrencyDollarIcon, ChartBarIcon, UserGroupIcon, ClipboardDocumentCheckIcon } from '@heroicons/react/24/outline'
 import PropertyModal from '../components/PropertyModal'
 import RealEstateTransactionModal from '../components/RealEstateTransactionModal'
-import { ModelsProperty, ModelsRealEstateTransaction, ModelsRealEstateMonthlyStats, ModelsRealEstateTransactionType } from '../generated'
+import TenantModal from '../components/TenantModal'
+import InspectionModal from '../components/InspectionModal'
+import { ModelsProperty, ModelsRealEstateTransaction, ModelsRealEstateMonthlyStats, ModelsRealEstateTransactionType, ModelsTenant, ModelsInspection } from '../generated'
+import { Link } from 'react-router-dom'
 
 export default function RealEstate() {
-  const [activeTab, setActiveTab] = useState<'overview' | 'properties' | 'transactions' | 'stats'>('overview')
+  const [activeTab, setActiveTab] = useState<'overview' | 'properties' | 'transactions' | 'tenants' | 'inspections' | 'stats'>('overview')
   const [properties, setProperties] = useState<ModelsProperty[]>([])
   const [transactions, setTransactions] = useState<ModelsRealEstateTransaction[]>([])
+  const [tenants, setTenants] = useState<ModelsTenant[]>([])
+  const [inspections, setInspections] = useState<ModelsInspection[]>([])
   const [monthlyStats, setMonthlyStats] = useState<ModelsRealEstateMonthlyStats | null>(null)
   const [loading, setLoading] = useState(true)
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1)
@@ -17,8 +22,12 @@ export default function RealEstate() {
   const [selectedProperty, setSelectedProperty] = useState<string>('')
   const [showPropertyModal, setShowPropertyModal] = useState(false)
   const [showTransactionModal, setShowTransactionModal] = useState(false)
+  const [showTenantModal, setShowTenantModal] = useState(false)
+  const [showInspectionModal, setShowInspectionModal] = useState(false)
   const [editingProperty, setEditingProperty] = useState<ModelsProperty | null>(null)
   const [editingTransaction, setEditingTransaction] = useState<ModelsRealEstateTransaction | null>(null)
+  const [editingTenant, setEditingTenant] = useState<ModelsTenant | null>(null)
+  const [editingInspection, setEditingInspection] = useState<ModelsInspection | null>(null)
 
   useEffect(() => {
     loadData()
@@ -33,12 +42,16 @@ export default function RealEstate() {
   const loadData = async () => {
     try {
       setLoading(true)
-      const [propertiesData, transactionsData] = await Promise.all([
+      const [propertiesData, transactionsData, tenantsData, inspectionsData] = await Promise.all([
         realEstateApi.properties.list(),
-        realEstateApi.transactions.list({ limit: 50 })
+        realEstateApi.transactions.list({ limit: 50 }),
+        tenantsApi.list(),
+        inspectionsApi.list()
       ])
       setProperties(propertiesData)
       setTransactions(transactionsData.transactions)
+      setTenants(tenantsData)
+      setInspections(inspectionsData)
     } catch (error) {
       console.error('Failed to load real estate data:', error)
     } finally {
@@ -90,6 +103,50 @@ export default function RealEstate() {
     }
   }
 
+  const handleTenantSave = () => {
+    loadData()
+    setEditingTenant(null)
+  }
+
+  const handleEditTenant = (tenant: ModelsTenant) => {
+    setEditingTenant(tenant)
+    setShowTenantModal(true)
+  }
+
+  const handleDeleteTenant = async (tenantId: string) => {
+    if (window.confirm('Are you sure you want to delete this tenant?')) {
+      try {
+        await tenantsApi.delete(tenantId)
+        loadData()
+      } catch (error) {
+        console.error('Failed to delete tenant:', error)
+        alert('Failed to delete tenant')
+      }
+    }
+  }
+
+  const handleInspectionSave = () => {
+    loadData()
+    setEditingInspection(null)
+  }
+
+  const handleEditInspection = (inspection: ModelsInspection) => {
+    setEditingInspection(inspection)
+    setShowInspectionModal(true)
+  }
+
+  const handleDeleteInspection = async (inspectionId: string) => {
+    if (window.confirm('Are you sure you want to delete this inspection?')) {
+      try {
+        await inspectionsApi.delete(inspectionId)
+        loadData()
+      } catch (error) {
+        console.error('Failed to delete inspection:', error)
+        alert('Failed to delete inspection')
+      }
+    }
+  }
+
   const loadMonthlyStats = async () => {
     try {
       const stats = await realEstateApi.stats.monthly(
@@ -115,6 +172,8 @@ export default function RealEstate() {
     { id: 'overview', name: 'Overview', icon: ChartBarIcon },
     { id: 'properties', name: 'Properties', icon: BuildingOfficeIcon },
     { id: 'transactions', name: 'Transactions', icon: CurrencyDollarIcon },
+    { id: 'tenants', name: 'Tenants', icon: UserGroupIcon },
+    { id: 'inspections', name: 'Inspections', icon: ClipboardDocumentCheckIcon },
     { id: 'stats', name: 'Statistics', icon: ChartBarIcon }
   ]
 
@@ -294,13 +353,17 @@ export default function RealEstate() {
                     <div key={property.id} className="p-6">
                       <div className="flex items-center justify-between">
                         <div className="flex-1">
-                          <h3 className="text-lg font-medium text-gray-900">{property.name}</h3>
+                          <Link
+                            to={`/dashboard/real-estate/properties/${property.id}`}
+                            className="text-lg font-medium text-indigo-600 hover:text-indigo-900">
+                            {property.name}
+                          </Link>
                           <p className="text-sm text-gray-500 mt-1">{property.address}</p>
                           {property.description && (
                             <p className="text-sm text-gray-600 mt-1 italic">{property.description}</p>
                           )}
                           <div className="mt-2 grid grid-cols-2 gap-2 text-sm text-gray-500">
-                            <span>Purchase: ${(property.buy_price || 0).toLocaleString()}</span>
+                            <span>Purchase: ${(property.purchase_price || 0).toLocaleString()}</span>
                             <span>Current: ${(property.current_value || 0).toLocaleString()}</span>
                             {property.purchase_date && (
                               <span>Purchased: {format(new Date(property.purchase_date), 'MMM dd, yyyy')}</span>
@@ -397,6 +460,143 @@ export default function RealEstate() {
                   <CurrencyDollarIcon className="mx-auto h-12 w-12 text-gray-400" />
                   <h3 className="mt-2 text-sm font-medium text-gray-900">No transactions</h3>
                   <p className="mt-1 text-sm text-gray-500">Get started by adding your first transaction.</p>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'tenants' && (
+          <div className="space-y-6">
+            {/* Tenants Header */}
+            <div className="flex justify-between items-center">
+              <h2 className="text-lg font-medium text-gray-900">Tenants ({tenants.length})</h2>
+              <button
+                onClick={() => setShowTenantModal(true)}
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <PlusIcon className="h-4 w-4 mr-2" />
+                Add Tenant
+              </button>
+            </div>
+
+            {/* Tenants List */}
+            <div className="bg-white shadow rounded-lg">
+              {tenants.length > 0 ? (
+                <div className="divide-y divide-gray-200">
+                  {tenants.map((tenant) => (
+                    <div key={tenant.id} className="p-6">
+                      <div className="flex items-center justify-between">
+                        <div className="flex-1">
+                          <div className="flex items-center space-x-3">
+                            <h3 className="text-lg font-medium text-gray-900">{tenant.name}</h3>
+                            <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                              tenant.is_active ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
+                            }`}>
+                              {tenant.is_active ? 'Active' : 'Inactive'}
+                            </span>
+                          </div>
+                          <p className="text-sm text-gray-500 mt-1">
+                            Property: {properties.find(p => p.id === tenant.property_id)?.name || 'Unknown'}
+                          </p>
+                          {tenant.contact && (
+                            <p className="text-sm text-gray-600 mt-1">Contact: {tenant.contact}</p>
+                          )}
+                          <div className="mt-2 grid grid-cols-2 gap-2 text-sm text-gray-500">
+                            <span>Deposit: ${tenant.deposit_amount.toLocaleString()}</span>
+                            {tenant.agreement_from_date && (
+                              <span>From: {format(new Date(tenant.agreement_from_date), 'MMM dd, yyyy')}</span>
+                            )}
+                            {tenant.agreement_to_date && (
+                              <span>To: {format(new Date(tenant.agreement_to_date), 'MMM dd, yyyy')}</span>
+                            )}
+                          </div>
+                        </div>
+                        <div className="flex space-x-2">
+                          <button
+                            onClick={() => handleEditTenant(tenant)}
+                            className="text-indigo-600 hover:text-indigo-900 text-sm font-medium">
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => handleDeleteTenant(tenant.id)}
+                            className="text-red-600 hover:text-red-900 text-sm font-medium">
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="p-6 text-center">
+                  <UserGroupIcon className="mx-auto h-12 w-12 text-gray-400" />
+                  <h3 className="mt-2 text-sm font-medium text-gray-900">No tenants</h3>
+                  <p className="mt-1 text-sm text-gray-500">Get started by adding your first tenant.</p>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'inspections' && (
+          <div className="space-y-6">
+            {/* Inspections Header */}
+            <div className="flex justify-between items-center">
+              <h2 className="text-lg font-medium text-gray-900">Inspections ({inspections.length})</h2>
+              <button
+                onClick={() => setShowInspectionModal(true)}
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <PlusIcon className="h-4 w-4 mr-2" />
+                Add Inspection
+              </button>
+            </div>
+
+            {/* Inspections List */}
+            <div className="bg-white shadow rounded-lg">
+              {inspections.length > 0 ? (
+                <div className="divide-y divide-gray-200">
+                  {inspections.map((inspection) => (
+                    <div key={inspection.id} className="p-6">
+                      <div className="flex items-center justify-between">
+                        <div className="flex-1">
+                          <div className="flex items-center space-x-3">
+                            <h3 className="text-sm font-medium text-gray-900">
+                              {format(new Date(inspection.date), 'MMM dd, yyyy')}
+                            </h3>
+                            {inspection.physically_check && (
+                              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                ✓ Physical Check
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-sm text-gray-500 mt-1">
+                            Property: {properties.find(p => p.id === inspection.property_id)?.name || 'Unknown'}
+                          </p>
+                          {inspection.description && (
+                            <p className="text-sm text-gray-600 mt-2 italic">{inspection.description}</p>
+                          )}
+                        </div>
+                        <div className="flex space-x-2">
+                          <button
+                            onClick={() => handleEditInspection(inspection)}
+                            className="text-indigo-600 hover:text-indigo-900 text-sm font-medium">
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => handleDeleteInspection(inspection.id)}
+                            className="text-red-600 hover:text-red-900 text-sm font-medium">
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="p-6 text-center">
+                  <ClipboardDocumentCheckIcon className="mx-auto h-12 w-12 text-gray-400" />
+                  <h3 className="mt-2 text-sm font-medium text-gray-900">No inspections</h3>
+                  <p className="mt-1 text-sm text-gray-500">Get started by adding your first inspection.</p>
                 </div>
               )}
             </div>
@@ -566,6 +766,28 @@ export default function RealEstate() {
         }}
         onSave={handleTransactionSave}
         transaction={editingTransaction}
+        properties={properties}
+      />
+
+      <TenantModal
+        isOpen={showTenantModal}
+        onClose={() => {
+          setShowTenantModal(false)
+          setEditingTenant(null)
+        }}
+        onSave={handleTenantSave}
+        tenant={editingTenant}
+        properties={properties}
+      />
+
+      <InspectionModal
+        isOpen={showInspectionModal}
+        onClose={() => {
+          setShowInspectionModal(false)
+          setEditingInspection(null)
+        }}
+        onSave={handleInspectionSave}
+        inspection={editingInspection}
         properties={properties}
       />
     </div>
