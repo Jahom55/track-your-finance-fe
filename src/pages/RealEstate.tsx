@@ -502,7 +502,7 @@ export default function RealEstate() {
                             <p className="text-sm text-gray-600 mt-1">Contact: {tenant.contact}</p>
                           )}
                           <div className="mt-2 grid grid-cols-2 gap-2 text-sm text-gray-500">
-                            <span>Deposit: ${tenant.deposit_amount.toLocaleString()}</span>
+                            <span>Deposit: ${(tenant.deposit_amount || 0).toLocaleString()}</span>
                             {tenant.agreement_from_date && (
                               <span>From: {format(new Date(tenant.agreement_from_date), 'MMM dd, yyyy')}</span>
                             )}
@@ -518,7 +518,7 @@ export default function RealEstate() {
                             Edit
                           </button>
                           <button
-                            onClick={() => handleDeleteTenant(tenant.id)}
+                            onClick={() => handleDeleteTenant(tenant.id!)}
                             className="text-red-600 hover:text-red-900 text-sm font-medium">
                             Delete
                           </button>
@@ -583,7 +583,7 @@ export default function RealEstate() {
                             Edit
                           </button>
                           <button
-                            onClick={() => handleDeleteInspection(inspection.id)}
+                            onClick={() => handleDeleteInspection(inspection.id!)}
                             className="text-red-600 hover:text-red-900 text-sm font-medium">
                             Delete
                           </button>
